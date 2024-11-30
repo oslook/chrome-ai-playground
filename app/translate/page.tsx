@@ -35,6 +35,15 @@ export default function TranslatePage() {
     checkAvailability();
   }, [sourceLang, targetLang]);
 
+  // Change target language if it's the same as source language
+  useEffect(() => {
+    if (sourceLang === targetLang) {
+      // Find the first available language that's not the source language
+      const nextLang = languages.find(lang => lang.code !== sourceLang)?.code || 'en';
+      setTargetLang(nextLang);
+    }
+  }, [sourceLang]);
+
   const checkAvailability = async () => {
     try {
       console.log('translation checkAvailability');
@@ -180,11 +189,13 @@ export default function TranslatePage() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {languages.map((lang) => (
-                    <SelectItem key={lang.code} value={lang.code}>
-                      {lang.name}
-                    </SelectItem>
-                  ))}
+                  {languages
+                    .filter(lang => lang.code !== sourceLang)
+                    .map((lang) => (
+                      <SelectItem key={lang.code} value={lang.code}>
+                        {lang.name}
+                      </SelectItem>
+                    ))}
                 </SelectContent>
               </Select>
             </div>

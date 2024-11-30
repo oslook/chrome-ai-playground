@@ -222,6 +222,8 @@ export default function RewriterPage() {
 
         <Card className="p-6">
           <div className="space-y-2">
+          <div className="flex justify-between items-center">
+
             <Label>Rewritten Text</Label>
             <Button
               variant="ghost"
@@ -240,6 +242,7 @@ export default function RewriterPage() {
                 <Copy className="h-4 w-4" />
               )}
             </Button>
+            </div>
             <Textarea
               placeholder="Rewritten text will appear here..."
               className="min-h-[300px]"

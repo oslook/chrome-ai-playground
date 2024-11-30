@@ -24,9 +24,9 @@ const languages = [
 
 export default function TranslatePage() {
   const [input, setInput] = useState('');
-  const [translation, setTranslation] = useState('');
+  const [output, setOutput] = useState('');
   const [sourceLang, setSourceLang] = useState('en');
-  const [targetLang, setTargetLang] = useState('es');
+  const [targetLang, setTargetLang] = useState('zh');
   const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -37,19 +37,23 @@ export default function TranslatePage() {
 
   const checkAvailability = async () => {
     try {
+      console.log('translation checkAvailability');
+
       // @ts-ignore
       if (!translation) {
         setIsAvailable(false);
         return;
       }
+      console.log('translation canTranslate');
 
       // Check if translation is available for English to Spanish first
       // @ts-ignore
-      const baseCheck = await translation.canTranslate({
-        sourceLanguage: "en",
-        targetLanguage: "ja"
+      const baseCheck = await translation?.canTranslate({
+        sourceLanguage: sourceLang,
+        targetLanguage: targetLang,
       });
 
+      console.log('translation check result:', baseCheck, sourceLang, targetLang);
       if (baseCheck === 'no') {
         setIsAvailable(false);
         return;
@@ -57,7 +61,7 @@ export default function TranslatePage() {
 
       // Then check for the selected language pair
       // @ts-ignore
-      const availability = await translation.canTranslate({
+      const availability = await translation?.canTranslate({
         sourceLanguage: sourceLang,
         targetLanguage: targetLang
       });
@@ -75,6 +79,7 @@ export default function TranslatePage() {
   };
 
   const handleTranslate = async () => {
+    console.log('translation handleTranslate');
     if (!input.trim()) {
       setError('Please enter some text to translate.');
       return;
@@ -82,17 +87,17 @@ export default function TranslatePage() {
 
     setError(null);
     setIsLoading(true);
-    setTranslation('');
 
     try {
       // @ts-ignore
-      const translator = await translationApi.createTranslator({
+      const translator = await translation?.createTranslator({
         sourceLanguage: sourceLang,
         targetLanguage: targetLang
       });
 
       const result = await translator.translate(input);
-      setTranslation(result);
+      console.log('translation result:', result);
+      setOutput(result);
     } catch (error) {
       setError('Failed to translate text. Please try again.');
     } finally {
@@ -111,9 +116,14 @@ export default function TranslatePage() {
             To enable the Translation API, please follow these steps:
             <ol className="list-decimal list-inside mt-2">
               <li>Open a new tab in Chrome</li>
+              <li>Go to <code>chrome://flags/#optimization-guide-on-device-model</code></li>
+              <li>Select <strong>Enabled BypassPerfRequirement</strong></li>
+              <li>This bypass performance checks which might get in the way of having Gemini Nano downloaded on your device.</li>
+          
               <li>Go to <code>chrome://flags/#translation-api</code></li>
               <li>Select <strong>Enabled</strong></li>
               <li>Click <strong>Relaunch Chrome</strong></li>
+              <li>Go to <code>chrome://on-device-translation-internals/</code> and Install the language pack</li>
             </ol>
           </AlertDescription>
         </Alert>
@@ -184,7 +194,7 @@ export default function TranslatePage() {
               <Textarea
                 placeholder="Translation will appear here..."
                 className="min-h-[200px]"
-                value={translation}
+                value={output}
                 readOnly
               />
             </div>

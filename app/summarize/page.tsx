@@ -69,6 +69,10 @@ export default function SummarizePage() {
             To enable the Summarization API, please follow these steps:
             <ol className="list-decimal list-inside mt-2">
               <li>Open a new tab in Chrome</li>
+              <li>Go to <code>chrome://flags/#optimization-guide-on-device-model</code></li>
+              <li>Select <strong>Enabled BypassPerfRequirement</strong></li>
+              <li>This bypass performance checks which might get in the way of having Gemini Nano downloaded on your device.</li>
+          
               <li>Go to <code>chrome://flags/#summarization-api-for-gemini-nano</code></li>
               <li>Select <strong>Enabled</strong></li>
               <li>Click <strong>Relaunch Chrome</strong></li>

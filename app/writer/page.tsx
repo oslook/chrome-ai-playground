@@ -118,7 +118,11 @@ export default function WriterPage() {
             To enable the Writer API, please follow these steps:
             <ol className="list-decimal list-inside mt-2">
               <li>Open a new tab in Chrome</li>
-              <li>Go to <code>chrome://flags/#text-writer-api</code></li>
+              <li>Go to <code>chrome://flags/#optimization-guide-on-device-model</code></li>
+              <li>Select <strong>Enabled BypassPerfRequirement</strong></li>
+              <li>This bypass performance checks which might get in the way of having Gemini Nano downloaded on your device.</li>
+
+              <li>Go to <code>chrome://flags/#writer-api-for-gemini-nano</code></li>
               <li>Select <strong>Enabled</strong></li>
               <li>Click <strong>Relaunch Chrome</strong></li>
             </ol>
@@ -181,7 +185,7 @@ export default function WriterPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <Card className="p-6">
+        <Card className="p-6">
           <div className="space-y-2">
             <Label>Shared Context *</Label>
             <Textarea
@@ -210,7 +214,7 @@ export default function WriterPage() {
           </div>
         </Card>
 
-    
+
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

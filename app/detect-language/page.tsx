@@ -98,7 +98,7 @@ export default function DetectLanguagePage() {
               <li>Go to <code>chrome://flags/#optimization-guide-on-device-model</code></li>
               <li>Select <strong>Enabled BypassPerfRequirement</strong></li>
               <li>This bypass performance checks which might get in the way of having Gemini Nano downloaded on your device.</li>
-              <li>Go to <code>chrome://flags/#language-detection-api-for-gemini-nano</code></li>
+              <li>Go to <code>chrome://flags/#language-detection-api</code></li>
               <li>Select <strong>Enabled</strong></li>
               <li>Click <strong>Relaunch Chrome</strong></li>
             </ol>

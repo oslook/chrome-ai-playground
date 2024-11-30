@@ -47,12 +47,14 @@ export default function PromptPage() {
         return;
       }
 
+      // @ts-ignore
       const caps = await ai.languageModel.capabilities();
       setCapabilities(caps);
       console.log('Language Model capabilities:', caps);
       
       if (caps.available === 'readily' || caps.available === 'after-download') {
         setIsAvailable(true);
+        // @ts-ignore
         const model = await ai.languageModel.create();
         modelRef.current = model;
         setTemperature(caps.defaultTemperature ?? 0.7);

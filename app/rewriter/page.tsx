@@ -34,6 +34,24 @@ export default function RewriterPage() {
 
   const checkAvailability = async () => {
     try {
+      console.log('Checking rewriter API availability...');
+      // @ts-ignore
+      if (!ai?.rewriter) {
+        console.log('rewriter API not found in ai object');
+        setIsAvailable(false);
+        return;
+      }
+      console.log('Creating rewriter instance for availability check...');
+      // @ts-ignore
+      const rewriter = await ai.rewriter.create();
+      if (rewriter) {
+        console.log('Writer instance created successfully');
+        setIsAvailable(true);
+        rewriter.destroy();
+      } else {
+        console.log('Failed to create rewriter instance');
+        setIsAvailable(false);
+      }
     } catch (error) {
       setIsAvailable(false);
       console.error('Error checking rewriter availability:', error);
@@ -51,6 +69,7 @@ export default function RewriterPage() {
     setOutput('');
 
     try {
+      // @ts-ignore
       const rewriter = await ai.rewriter.create({
         tone,
         format,
@@ -59,9 +78,8 @@ export default function RewriterPage() {
       });
       console.log('ReWriter instance created successfully', rewriter);
 
-
       const stream = rewriter.rewriteStreaming(input);
-      
+
       console.log('Stream reader and decoder initialized');
 
       for await (const chunk of stream) {
@@ -153,7 +171,7 @@ export default function RewriterPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <Card className="p-6">
+        <Card className="p-6">
           <div className="space-y-2">
             <Label>Shared Context *</Label>
             <Textarea
@@ -182,7 +200,7 @@ export default function RewriterPage() {
           </div>
         </Card>
 
-      
+
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -202,22 +220,22 @@ export default function RewriterPage() {
           <div className="space-y-2">
             <Label>Rewritten Text</Label>
             <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => {
-                  navigator.clipboard.writeText(output).then(() => {
-                    setIsCopied(true);
-                    setTimeout(() => setIsCopied(false), 2000);
-                  });
-                }}
-                disabled={!output}
-              >
-                {isCopied ? (
-                  <Check className="h-4 w-4" />
-                ) : (
-                  <Copy className="h-4 w-4" />
-                )}
-              </Button>
+              variant="ghost"
+              size="icon"
+              onClick={() => {
+                navigator.clipboard.writeText(output).then(() => {
+                  setIsCopied(true);
+                  setTimeout(() => setIsCopied(false), 2000);
+                });
+              }}
+              disabled={!output}
+            >
+              {isCopied ? (
+                <Check className="h-4 w-4" />
+              ) : (
+                <Copy className="h-4 w-4" />
+              )}
+            </Button>
             <Textarea
               placeholder="Rewritten text will appear here..."
               className="min-h-[300px]"
@@ -235,8 +253,8 @@ export default function RewriterPage() {
         </Alert>
       )}
 
-      <Button 
-        onClick={handleRewrite} 
+      <Button
+        onClick={handleRewrite}
         className="w-full"
         disabled={isLoading || !input.trim()}
       >

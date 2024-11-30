@@ -43,6 +43,7 @@ export default function WriterPage() {
         return;
       }
       console.log('Creating writer instance for availability check...');
+      // @ts-ignore
       const writer = await ai.writer.create();
       if (writer) {
         console.log('Writer instance created successfully');
@@ -71,6 +72,7 @@ export default function WriterPage() {
 
     try {
       console.log('Creating writer instance with shared context:', { sharedContext });
+      // @ts-ignore
       const writer = await ai.writer.create({
         tone,
         format,

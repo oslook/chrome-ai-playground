@@ -33,11 +33,12 @@ export default function DetectLanguagePage() {
         setIsAvailable(false);
         return;
       }
-      const availability = await translation.canDetect();
+      // @ts-ignore
+      const availability = await translation?.canDetect();
       if (availability !== 'no') {
         // Initialize detector once when available
         // @ts-ignore
-        const newDetector = await translation.createDetector();
+        const newDetector = await translation?.createDetector();
         newDetector.ondownloadprogress = (event: any) => {
           if (event.loaded && event.total) {
             setDownloadProgress((event.loaded / event.total) * 100);
@@ -108,7 +109,7 @@ export default function DetectLanguagePage() {
   }
 
   return (
-    <div className="container max-w-4xl py-6 space-y-6">
+    <div className="max-w-4xl mx-auto space-y-6">
       <div className="space-y-2">
         <h1 className="text-3xl font-bold">Language Detection</h1>
         <p className="text-muted-foreground">
@@ -149,7 +150,7 @@ export default function DetectLanguagePage() {
           <h2 className="font-semibold mb-4">Detection Results:</h2>
           <div className="space-y-2">
             {results
-              .filter(result => result.confidence > 0.01) 
+              .filter((result) => result.confidence > 0.01)
               .map((result, index) => (
                 <div key={index} className="flex justify-between items-center p-2 bg-muted rounded">
                   <span className="font-medium">
@@ -166,79 +167,79 @@ export default function DetectLanguagePage() {
 
       {/* Supported Languages Section */}
       <div className="mt-8 space-y-4">
-            <h2 className="text-2xl font-bold">Supported Languages</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              <div className="space-y-2">
-                <h3 className="font-semibold">European</h3>
-                <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>English (en)</li>
-                  <li>French (fr)</li>
-                  <li>German (de)</li>
-                  <li>Spanish (es)</li>
-                  <li>Italian (it)</li>
-                  <li>Dutch (nl)</li>
-                  <li>Portuguese (pt)</li>
-                  <li>Swedish (sv)</li>
-                </ul>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-semibold">Asian</h3>
-                <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>Chinese (zh, zh-Latn)</li>
-                  <li>Japanese (ja, ja-Latn)</li>
-                  <li>Korean (ko)</li>
-                  <li>Vietnamese (vi)</li>
-                  <li>Thai (th)</li>
-                  <li>Hindi (hi, hi-Latn)</li>
-                  <li>Bengali (bn)</li>
-                </ul>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-semibold">Cyrillic</h3>
-                <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>Russian (ru, ru-Latn)</li>
-                  <li>Ukrainian (uk)</li>
-                  <li>Bulgarian (bg, bg-Latn)</li>
-                  <li>Serbian (sr)</li>
-                  <li>Belarusian (be)</li>
-                </ul>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-semibold">Middle Eastern</h3>
-                <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>Arabic (ar, ar-Latn)</li>
-                  <li>Hebrew (iw)</li>
-                  <li>Persian (fa)</li>
-                  <li>Turkish (tr)</li>
-                  <li>Kurdish (ku)</li>
-                </ul>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-semibold">African</h3>
-                <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>Swahili (sw)</li>
-                  <li>Zulu (zu)</li>
-                  <li>Afrikaans (af)</li>
-                  <li>Yoruba (yo)</li>
-                  <li>Hausa (ha)</li>
-                </ul>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-semibold">Other</h3>
-                <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>Esperanto (eo)</li>
-                  <li>Latin (la)</li>
-                  <li>Maori (mi)</li>
-                  <li>Hawaiian (haw)</li>
-                  <li>Luxembourgish (lb)</li>
-                </ul>
-              </div>
-            </div>
-            <p className="text-sm text-muted-foreground mt-4">
-              Note: Some languages support both native script and Latin script variants (indicated by -Latn suffix).
-              The language codes shown in parentheses are the official codes used by the API.
-            </p>
+        <h2 className="text-2xl font-bold">Supported Languages</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="space-y-2">
+            <h3 className="font-semibold">European</h3>
+            <ul className="space-y-1 text-sm text-muted-foreground">
+              <li>English (en)</li>
+              <li>French (fr)</li>
+              <li>German (de)</li>
+              <li>Spanish (es)</li>
+              <li>Italian (it)</li>
+              <li>Dutch (nl)</li>
+              <li>Portuguese (pt)</li>
+              <li>Swedish (sv)</li>
+            </ul>
           </div>
+          <div className="space-y-2">
+            <h3 className="font-semibold">Asian</h3>
+            <ul className="space-y-1 text-sm text-muted-foreground">
+              <li>Chinese (zh, zh-Latn)</li>
+              <li>Japanese (ja, ja-Latn)</li>
+              <li>Korean (ko)</li>
+              <li>Vietnamese (vi)</li>
+              <li>Thai (th)</li>
+              <li>Hindi (hi, hi-Latn)</li>
+              <li>Bengali (bn)</li>
+            </ul>
+          </div>
+          <div className="space-y-2">
+            <h3 className="font-semibold">Cyrillic</h3>
+            <ul className="space-y-1 text-sm text-muted-foreground">
+              <li>Russian (ru, ru-Latn)</li>
+              <li>Ukrainian (uk)</li>
+              <li>Bulgarian (bg, bg-Latn)</li>
+              <li>Serbian (sr)</li>
+              <li>Belarusian (be)</li>
+            </ul>
+          </div>
+          <div className="space-y-2">
+            <h3 className="font-semibold">Middle Eastern</h3>
+            <ul className="space-y-1 text-sm text-muted-foreground">
+              <li>Arabic (ar, ar-Latn)</li>
+              <li>Hebrew (iw)</li>
+              <li>Persian (fa)</li>
+              <li>Turkish (tr)</li>
+              <li>Kurdish (ku)</li>
+            </ul>
+          </div>
+          <div className="space-y-2">
+            <h3 className="font-semibold">African</h3>
+            <ul className="space-y-1 text-sm text-muted-foreground">
+              <li>Swahili (sw)</li>
+              <li>Zulu (zu)</li>
+              <li>Afrikaans (af)</li>
+              <li>Yoruba (yo)</li>
+              <li>Hausa (ha)</li>
+            </ul>
+          </div>
+          <div className="space-y-2">
+            <h3 className="font-semibold">Other</h3>
+            <ul className="space-y-1 text-sm text-muted-foreground">
+              <li>Esperanto (eo)</li>
+              <li>Latin (la)</li>
+              <li>Maori (mi)</li>
+              <li>Hawaiian (haw)</li>
+              <li>Luxembourgish (lb)</li>
+            </ul>
+          </div>
+        </div>
+        <p className="text-sm text-muted-foreground mt-4">
+          Note: Some languages support both native script and Latin script variants (indicated by -Latn suffix).
+          The language codes shown in parentheses are the official codes used by the API.
+        </p>
+      </div>
     </div>
   );
 }

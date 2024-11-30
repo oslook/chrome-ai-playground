@@ -25,6 +25,7 @@ export default function SummarizePage() {
         setIsAvailable(false);
         return;
       }
+      // @ts-ignore
       const result = await ai.summarizer.create();
       console.log('Summarizer result:', result);
       if (result) {
@@ -84,7 +85,7 @@ export default function SummarizePage() {
         <FileText className="h-6 w-6" />
         <h1 className="text-3xl font-bold">Text Summarization</h1>
       </div>
-      
+
       <Card className="p-6">
         <div className="space-y-4">
           {error && (
@@ -104,8 +105,8 @@ export default function SummarizePage() {
             />
           </div>
 
-          <Button 
-            onClick={handleSummarize} 
+          <Button
+            onClick={handleSummarize}
             disabled={isLoading || !input.trim()}
             className="w-full"
           >

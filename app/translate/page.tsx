@@ -44,6 +44,7 @@ export default function TranslatePage() {
       }
 
       // Check if translation is available for English to Spanish first
+      // @ts-ignore
       const baseCheck = await translation.canTranslate({
         sourceLanguage: "en",
         targetLanguage: "ja"
@@ -55,6 +56,7 @@ export default function TranslatePage() {
       }
 
       // Then check for the selected language pair
+      // @ts-ignore
       const availability = await translation.canTranslate({
         sourceLanguage: sourceLang,
         targetLanguage: targetLang
@@ -100,7 +102,7 @@ export default function TranslatePage() {
 
   if (isAvailable === false) {
     return (
-      <div className="container max-w-4xl py-6 space-y-6">
+      <div className="max-w-4xl mx-auto space-y-6">
         <h1 className="text-3xl font-bold">Translation</h1>
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />

@@ -2,7 +2,7 @@
 
 The playground for all API supported by Chrome AI and Gemini Nano, making it the most comprehensive and user-friendly platform available.
 
-![Screenshot preview](https://raw.githubusercontent.com/oslook/chrome-ai-playground/main/public/imqges/translate.webp)
+![image](https://github.com/user-attachments/assets/087ed9a3-9569-44c7-b9e5-1f6afc694a5e)
 
 
 ## Features 🎯

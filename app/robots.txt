@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://chromeai.oslook.com/sitemap.xml 

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { FileText, Globe2, Languages, MessageSquare, Edit, RefreshCw, PenTool, Cpu, Shield, Zap, WifiOff, Server, Layers, ArrowRight } from 'lucide-react';
+import { FileText, Globe2, Languages, MessageSquare, Edit, RefreshCw, PenTool, Cpu, Shield, Zap, WifiOff, Server, Layers, ArrowRight, GitFork, Star } from 'lucide-react';
 import Link from 'next/link';
 
 const features = [
@@ -93,7 +93,25 @@ const faqs = [
   },
 ];
 
-export default function Home() {
+async function getGitHubStats() {
+  try {
+    const res = await fetch('https://api.github.com/repos/oslook/chrome-ai-playground', {
+      next: { revalidate: 3600 },
+    });
+    const data = await res.json();
+    return {
+      stars: data.stargazers_count,
+      forks: data.forks_count
+    };
+  } catch (error) {
+    console.error('Failed to fetch GitHub stats:', error);
+    return null;
+  }
+}
+
+export default async function Home() {
+  const stats = await getGitHubStats();
+
   return (
     <>
       <div className="flex flex-col items-center space-y-12 pt-8 pb-16">
@@ -104,6 +122,33 @@ export default function Home() {
           <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
             Explore Chrome's built-in AI capabilities with our interactive demos
           </p>
+          {stats !== null && (
+            <div className="flex items-center justify-center space-x-4">
+              <a
+                href="https://github.com/oslook/chrome-ai-playground"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center space-x-2 px-4 py-2 rounded-full 
+                  bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 
+                  transition-colors duration-200"
+              >
+                <Star className="h-6 w-6 text-yellow-500" />
+                <span className="text-xl font-semibold">{stats.stars} Stars</span>
+              </a>
+              
+              <a
+                href="https://github.com/oslook/chrome-ai-playground/fork"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center space-x-2 px-4 py-2 rounded-full 
+                  bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 
+                  transition-colors duration-200"
+              >
+                <GitFork className="h-6 w-6 text-blue-500" />
+                <span className="text-xl font-semibold">{stats.forks} Forks</span>
+              </a>
+            </div>
+          )}
         </div>
 
         <div className="w-full max-w-5xl space-y-8">

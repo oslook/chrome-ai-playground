@@ -113,7 +113,7 @@ async function getGitHubStats() {
 }
 
 export default async function Home() {
-  const [stats, setStats] = useState({ stars: 0 });
+  const [stats, setStats] = useState({ stars: 0, forks: 0 });
 
   useEffect(() => {
     getGitHubStats();

@@ -96,26 +96,20 @@ const faqs = [
   },
 ];
 
-async function getGitHubStats() {
-  try {
-    const res = await fetch('https://api.github.com/repos/oslook/chrome-ai-playground', {
-      next: { revalidate: 3600 },
-    });
-    const data = await res.json();
-    return {
-      stars: data.stargazers_count,
-      forks: data.forks_count
-    };
-  } catch (error) {
-    console.error('Failed to fetch GitHub stats:', error);
-    return null;
-  }
-}
+
 
 export default async function Home() {
   const [stats, setStats] = useState({ stars: 0, forks: 0 });
 
   useEffect(() => {
+    async function getGitHubStats() {
+      const res = await fetch('https://api.github.com/repos/oslook/chrome-ai-playground');
+      const data = await res.json();
+      setStats({
+        stars: data.stargazers_count,
+        forks: data.forks_count
+      });
+    }
     getGitHubStats();
   }, []);
 

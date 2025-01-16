@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { FileText, Globe2, Languages, MessageSquare, Edit, RefreshCw, PenTool, Cpu, Shield, Zap, WifiOff, Server, Layers, ArrowRight, GitFork, Star } from 'lucide-react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const features = [
   {
@@ -110,7 +111,11 @@ async function getGitHubStats() {
 }
 
 export default async function Home() {
-  const stats = await getGitHubStats();
+  const [stats, setStats] = useState({ stars: 0 });
+
+  useEffect(() => {
+    getGitHubStats();
+  }, []);
 
   return (
     <>

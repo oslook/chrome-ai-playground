@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { FileText, Globe2, Languages, MessageSquare, Edit, RefreshCw, PenTool, Cpu, Shield, Zap, WifiOff, Server, Layers, ArrowRight, GitFork, Star } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -96,22 +96,26 @@ const faqs = [
   },
 ];
 
-
-
-export default async function Home() {
+export default function Home() {
   const [stats, setStats] = useState({ stars: 0, forks: 0 });
 
   useEffect(() => {
-    async function getGitHubStats() {
-      const res = await fetch('https://api.github.com/repos/oslook/chrome-ai-playground');
-      const data = await res.json();
-      setStats({
-        stars: data.stargazers_count,
-        forks: data.forks_count
-      });
+    async function fetchGitHubStats() {
+      try {
+        const response = await fetch('https://api.github.com/repos/oslook/chrome-ai-playground');
+        const data = await response.json();
+        setStats({ 
+          stars: data.stargazers_count, 
+          forks: data.forks_count 
+        });
+      } catch (error) {
+        console.error('Error fetching GitHub stats:', error);
+      }
     }
-    getGitHubStats();
+    
+    fetchGitHubStats(); // This is nested asynchronous function
   }, []);
+
 
   return (
     <>

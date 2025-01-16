@@ -12,8 +12,8 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Chrome AI Playground',
   description: 'Explore Chrome AI capabilities in an interactive playground',
-  keywords: 'Chrome AI, AI Playground, Machine Learning, Web AI, Chrome Extensions',
-  authors: [{ name: 'Your Name' }],
+  keywords: 'Chrome AI, AI Playground, Chrome AI Playground, Deep Learning, Machine Learning, Web AI, Chrome Extensions',
+  authors: [{ name: 'oslook' }],
   openGraph: {
     title: 'Chrome AI Playground',
     description: 'Explore Chrome AI capabilities in an interactive playground',

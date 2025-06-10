@@ -10,21 +10,14 @@ import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 
-interface ModelCapabilities {
-  available: 'readily' | 'after-download' | 'no';
-  defaultTopK?: number;
-  maxTopK?: number;
-  defaultTemperature?: number;
-}
-
 export default function PromptPage() {
   const [prompt, setPrompt] = useState('');
   const [response, setResponse] = useState('');
   const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
   const [isStreaming, setIsStreaming] = useState(false);
-  const [capabilities, setCapabilities] = useState<ModelCapabilities | null>(null);
-  const [temperature, setTemperature] = useState(0.7);
-  const [topK, setTopK] = useState<number>(40);
+  const [params, setParams] = useState<LanguageModelParams | null>(null);
+  const [temperature, setTemperature] = useState(0);
+  const [topK, setTopK] = useState<number>(0);
   const [systemPrompt, setSystemPrompt] = useState('');
   const [tokenCount, setTokenCount] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -41,24 +34,21 @@ export default function PromptPage() {
 
   const checkAvailability = async () => {
     try {
-      // @ts-ignore
-      if (!ai?.languageModel) {
+      if (!LanguageModel) {
         setIsAvailable(false);
         return;
       }
 
-      // @ts-ignore
-      const caps = await ai.languageModel.capabilities();
-      setCapabilities(caps);
-      console.log('Language Model capabilities:', caps);
-      
-      if (caps.available === 'readily' || caps.available === 'after-download') {
+      const availability = await LanguageModel.availability();
+      if (availability === 'available') {
         setIsAvailable(true);
-        // @ts-ignore
-        const model = await ai.languageModel.create();
+        const model = await LanguageModel.create();
         modelRef.current = model;
-        setTemperature(caps.defaultTemperature ?? 0.7);
-        setTopK(caps.defaultTopK ?? 40);
+
+        const params = await LanguageModel.params();
+        setParams(params);
+        setTemperature(params.defaultTemperature ?? 0.7);
+        setTopK(params.defaultTopK ?? 3);
       } else {
         setIsAvailable(false);
       }
@@ -71,7 +61,7 @@ export default function PromptPage() {
   const countTokens = async () => {
     if (!prompt.trim() || !modelRef.current) return;
     try {
-      const count = await modelRef.current.countPromptTokens(prompt);
+      const count = await modelRef.current.measureInputUsage(prompt);
       setTokenCount(count);
     } catch (error) {
       console.error('Failed to count tokens:', error);
@@ -105,7 +95,7 @@ export default function PromptPage() {
         while (true) {
           const { done, value } = await reader.read();
           if (done) break;
-          accumulated = value;
+          accumulated += value;
           setResponse(accumulated);
         }
       } else {
@@ -192,7 +182,7 @@ export default function PromptPage() {
               <Slider
                 value={[temperature]}
                 min={0}
-                max={1}
+                max={params?.maxTemperature}
                 step={0.1}
                 onValueChange={([value]) => setTemperature(value)}
               />
@@ -203,7 +193,7 @@ export default function PromptPage() {
               <Slider
                 value={[topK]}
                 min={1}
-                max={capabilities?.maxTopK ?? 100}
+                max={params?.maxTopK}
                 step={1}
                 onValueChange={([value]) => setTopK(value)}
               />

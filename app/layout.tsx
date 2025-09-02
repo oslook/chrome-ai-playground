@@ -2,11 +2,16 @@ import './globals.css';
 import './index.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { ThemeProvider } from '@/components/theme-provider';
+import dynamic from 'next/dynamic';
 import { Navigation } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Analytics } from "@vercel/analytics/react";
 import Script from 'next/script';
+
+const ThemeProvider = dynamic(() => import('@/components/theme-provider').then(mod => ({ default: mod.ThemeProvider })), {
+  ssr: false,
+  loading: () => null,
+});
 
 // Structured Data for SEO
 const structuredData = {

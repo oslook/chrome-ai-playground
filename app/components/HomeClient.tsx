@@ -143,7 +143,7 @@ export default function HomeClient() {
   useEffect(() => {
     async function fetchGitHubStats() {
       try {
-        const response = await fetch('https://api.github.com/repos/oslook/chrome-ai-playground');
+        const response = await (globalThis as any).fetch('https://api.github.com/repos/oslook/chrome-ai-playground');
         const data = await response.json();
         setGithubStats({
           stars: data.stargazers_count || 0,

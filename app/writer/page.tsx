@@ -76,7 +76,7 @@ export default function WriterPage() {
     // @ts-ignore
     const newWriter = await Writer.create({
       ...options,
-      monitor(m) {
+      monitor(m: any) {
         // @ts-ignore
         m.addEventListener('downloadprogress', (e) => {
           // @ts-ignore

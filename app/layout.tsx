@@ -1,45 +1,47 @@
 import './globals.css';
+import './index.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
-import { Navigation } from '@/components/navigation';
-import { Footer } from '@/components/ui/footer';
+import { Navigation } from '@/components/header';
+import { Footer } from '@/components/footer';
 import { Analytics } from "@vercel/analytics/react";
 import Script from 'next/script';
 
+// Structured Data for SEO
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Chrome AI Playground",
+  "description": "Explore Chrome's built-in AI capabilities including translation, summarization, language detection, and more powered by Gemini Nano",
+  "url": "https://chrome-ai-playground.vercel.app",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Chrome",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "AI-powered translation with automatic language detection",
+    "Intelligent text summarization with multiple formats",
+    "Natural language processing with Gemini Nano",
+    "Client-side AI processing for privacy",
+    "Real-time AI capabilities in the browser"
+  ],
+  "author": {
+    "@type": "Organization",
+    "name": "Chrome AI Playground Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Chrome AI Playground"
+  }
+};
+
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: 'Chrome AI Playground',
-  description: 'Explore Chrome AI capabilities in an interactive playground',
-  keywords: 'Chrome AI, AI Playground, Chrome AI Playground, Deep Learning, Machine Learning, Web AI, Chrome Extensions',
-  authors: [{ name: 'oslook' }],
-  openGraph: {
-    title: 'Chrome AI Playground',
-    description: 'Explore Chrome AI capabilities in an interactive playground',
-    url: 'https://chromeai.oslook.com',
-    siteName: 'Chrome AI Playground',
-    images: [
-      {
-        url: 'https://chromeai.oslook.com/og-image.png',
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Chrome AI Playground',
-    description: 'Explore Chrome AI capabilities in an interactive playground',
-    images: ['https://chromeai.oslook.com/og-image.png'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+// Remove duplicate metadata - it's now defined in page.tsx for better SEO control
 
 export default function RootLayout({
   children,
@@ -61,12 +63,19 @@ export default function RootLayout({
             gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
           `}
         </Script>
+        <Script
+          id="structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="min-h-screen bg-background flex flex-col">
             <Navigation />
-            <main className="container mx-auto px-4 py-6 flex-grow">
+            <main className="flex-grow">
               {children}
             </main>
             <Footer />

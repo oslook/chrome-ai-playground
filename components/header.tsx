@@ -1,6 +1,6 @@
 'use client';
 
-import { FileText, Globe2, Languages, MessageSquare,Bot, RefreshCw, PenTool, HelpCircle } from 'lucide-react';
+import { FileText, Globe2, MessageSquare,Bot, RefreshCw, PenTool, HelpCircle } from 'lucide-react';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu';
 import { ModeToggle } from '@/components/mode-toggle';
 import Link from 'next/link';
@@ -9,10 +9,9 @@ import { usePathname } from 'next/navigation';
 
 const navigation = [
   { name: 'Guide', href: '/guide', icon: HelpCircle },
-  { name: 'Prompt', href: '/prompt', icon: MessageSquare },
-  { name: 'Summarize', href: '/summarize', icon: FileText },
   { name: 'Translate', href: '/translate', icon: Globe2 },
-  { name: 'Detect Language', href: '/detect-language', icon: Languages },
+  { name: 'Summarize', href: '/summarize', icon: FileText },
+  { name: 'Prompt', href: '/prompt', icon: MessageSquare },
   { name: 'Writer', href: '/writer', icon: PenTool },
   { name: 'ReWriter', href: '/rewriter', icon: RefreshCw },
 

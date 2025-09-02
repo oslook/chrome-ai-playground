@@ -5,6 +5,10 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
+  experimental: {
+    // Enable experimental features if needed
+    optimizeCss: true,
+  },
 };
 
 module.exports = nextConfig;

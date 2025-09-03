@@ -1,4 +1,8 @@
+<div align="center">
+
 # Chrome AI Playground 🚀
+
+**The most comprehensive and user-friendly platform for exploring Chrome's built-in AI capabilities powered by Gemini Nano.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
@@ -11,7 +15,8 @@
 [![GitHub stars](https://img.shields.io/github/stars/oslook/chrome-ai-playground?style=social)](https://github.com/oslook/chrome-ai-playground)
 [![GitHub forks](https://img.shields.io/github/forks/oslook/chrome-ai-playground?style=social)](https://github.com/oslook/chrome-ai-playground/fork)
 
-**The most comprehensive and user-friendly platform for exploring Chrome's built-in AI capabilities powered by Gemini Nano.**
+</div>
+
 
 Experience the future of web AI with client-side processing, enhanced privacy, and lightning-fast performance. Our playground features modern UI design, comprehensive API coverage, and detailed setup guides.
 

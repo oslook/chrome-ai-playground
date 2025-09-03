@@ -362,7 +362,7 @@ export default function HomeClient() {
               </Button>
             </Link>
             <Link href="/guide">
-              <Button size="lg" variant="outline" className="px-8 py-3 text-base font-medium border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10">
+              <Button size="lg" variant="outline" className="px-8 py-3 text-base font-medium border-primary-foreground/20 hover:bg-primary-foreground/10">
                 <BookOpen className="w-5 h-5 mr-2" />
                 Read Documentation
               </Button>

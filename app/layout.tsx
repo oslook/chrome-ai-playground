@@ -2,16 +2,11 @@ import './globals.css';
 import './index.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import dynamic from 'next/dynamic';
 import { Navigation } from '@/components/header';
 import { Footer } from '@/components/footer';
-import { Analytics } from "@vercel/analytics/react";
+// import { Analytics } from "@vercel/analytics/react";
 import Script from 'next/script';
-
-const ThemeProvider = dynamic(() => import('@/components/theme-provider').then(mod => ({ default: mod.ThemeProvider })), {
-  ssr: false,
-  loading: () => null,
-});
+import { ThemeProvider } from '@/components/theme-provider';
 
 // Structured Data for SEO
 const structuredData = {
@@ -19,7 +14,7 @@ const structuredData = {
   "@type": "WebApplication",
   "name": "Chrome AI Playground",
   "description": "Explore Chrome's built-in AI capabilities including translation, summarization, language detection, and more powered by Gemini Nano",
-  "url": "https://chrome-ai-playground.vercel.app",
+  "url": "https://chromeai.oslook.com",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Chrome",
   "offers": {
@@ -45,8 +40,6 @@ const structuredData = {
 };
 
 const inter = Inter({ subsets: ['latin'] });
-
-// Remove duplicate metadata - it's now defined in page.tsx for better SEO control
 
 export default function RootLayout({
   children,
@@ -86,7 +79,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
-        <Analytics />
+        {/* <Analytics /> */}
       </body>
     </html>
   );

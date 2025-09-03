@@ -1,11 +1,5 @@
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
-
-// Dynamic import to avoid hydration issues with client-side features
-const HomeClient = dynamic(() => import('../components/HomeClient'), {
-  ssr: false,
-  loading: () => <div className="min-h-screen flex items-center justify-center">Loading...</div>
-});
+import HomeClient from  "@/components/HomeClient"
 
 export const metadata: Metadata = {
   title: 'Chrome AI Playground - Explore Built-in AI Capabilities',
@@ -30,14 +24,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://chrome-ai-playground.vercel.app'),
+  metadataBase: new URL('https://chromeai.oslook.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'Chrome AI Playground - Explore Built-in AI Capabilities',
     description: 'Discover and experiment with Chrome\'s built-in AI APIs including translation, summarization, language detection, and more.',
-    url: 'https://chrome-ai-playground.vercel.app',
+    url: 'https://chromeai.oslook.com',
     siteName: 'Chrome AI Playground',
     images: [
       {

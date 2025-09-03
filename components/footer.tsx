@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/Image';
 import { Github, Star, GitFork, Heart, ExternalLink, BookOpen, MessageSquare, Cpu, Globe } from 'lucide-react';
 
 export function Footer() {
@@ -31,8 +32,12 @@ export function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">AI</span>
+              <div className="w-8 h-8">
+                <Image src="logo.svg"
+                  height={32}
+                  width={32}
+                  alt='Chrome AI playground'
+                ></Image>              
               </div>
               <span className="font-bold text-lg">Chrome AI Playground</span>
             </div>

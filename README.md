@@ -1,5 +1,16 @@
 # Chrome AI Playground 🚀
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
+[![Chrome Version](https://img.shields.io/badge/chrome-%3E%3D138.0-blue)](https://www.google.com/chrome/)
+[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC)](https://tailwindcss.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-Deployed-black)](https://vercel.com)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/oslook/chrome-ai-playground/pulls)
+[![GitHub stars](https://img.shields.io/github/stars/oslook/chrome-ai-playground?style=social)](https://github.com/oslook/chrome-ai-playground)
+[![GitHub forks](https://img.shields.io/github/forks/oslook/chrome-ai-playground?style=social)](https://github.com/oslook/chrome-ai-playground/fork)
+
 **The most comprehensive and user-friendly platform for exploring Chrome's built-in AI capabilities powered by Gemini Nano.**
 
 Experience the future of web AI with client-side processing, enhanced privacy, and lightning-fast performance. Our playground features modern UI design, comprehensive API coverage, and detailed setup guides.
@@ -276,6 +287,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Built with ❤️ for the future of web AI**
 
-[🌐 Live Demo](https://chrome-ai-playground.vercel.app) • [📖 Documentation](/guide) • [🐛 Report Issues](https://github.com/oslook/chrome-ai-playground/issues)
+[🌐 Live Demo](https://chromeai.oslook.com) • [📖 Documentation](/guide) • [🐛 Report Issues](https://github.com/oslook/chrome-ai-playground/issues)
 
 </div>

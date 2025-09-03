@@ -1,9 +1,10 @@
 'use client';
 
-import { FileText, Globe2, MessageSquare,Bot, RefreshCw, PenTool, HelpCircle } from 'lucide-react';
+import { FileText, Globe2, MessageSquare, Bot, RefreshCw, PenTool, HelpCircle } from 'lucide-react';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu';
 import { ModeToggle } from '@/components/mode-toggle';
 import Link from 'next/link';
+import Image from 'next/Image'
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 
@@ -24,10 +25,14 @@ export function Navigation() {
     <div className="border-b">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <Bot className="h-6 w-6" />
+          <Image src="logo.svg"
+            height={32}
+            width={32}
+            alt='Chrome AI playground'
+          ></Image>
           <span className="font-bold text-lg">Chrome AI Playground</span>
         </Link>
-        
+
         <NavigationMenu>
           <NavigationMenuList className="hidden md:flex">
             {navigation.map((item) => {

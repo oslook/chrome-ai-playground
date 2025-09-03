@@ -44,6 +44,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -76,6 +77,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -84,14 +86,14 @@
 @layer utilities {
   .bg-grid-pattern {
     background-image:
-      linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
+      linear-gradient(rgba(0, 0, 0, 0.20) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.20) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
   .dark .bg-grid-pattern {
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.20) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.20) 1px, transparent 1px);
   }
 }

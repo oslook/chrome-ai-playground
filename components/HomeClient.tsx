@@ -137,36 +137,12 @@ const faqs = [
 ];
 
 export default function HomeClient() {
-  const [githubStats, setGithubStats] = useState({ stars: 0, forks: 0 });
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchGitHubStats() {
-      try {
-        const response = await (globalThis as any).fetch('https://api.github.com/repos/oslook/chrome-ai-playground');
-        const data = await response.json();
-        setGithubStats({
-          stars: data.stargazers_count || 0,
-          forks: data.forks_count || 0
-        });
-      } catch (error) {
-        console.error('Error fetching GitHub stats:', error);
-        // Set default values if fetch fails
-        setGithubStats({ stars: 0, forks: 0 });
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchGitHubStats();
-  }, []);
-
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div className="container mx-auto px-4 py-16 md:py-24">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
+        <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full mb-6">
@@ -220,34 +196,6 @@ export default function HomeClient() {
             </div>
           </div>
         </div>
-
-        {/* GitHub Stats */}
-        {!isLoading && (githubStats.stars > 0 || githubStats.forks > 0) && (
-          <div className="border-t border-border/50 bg-card/50 backdrop-blur-sm">
-            <div className="container mx-auto px-4 py-6">
-              <div className="flex items-center justify-center gap-6">
-                <a
-                  href="https://github.com/oslook/chrome-ai-playground"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-card border border-border rounded-lg hover:bg-accent transition-colors"
-                >
-                  <Star className="w-4 h-4 text-yellow-500" />
-                  <span className="font-medium">{githubStats.stars.toLocaleString()} Stars</span>
-                </a>
-                <a
-                  href="https://github.com/oslook/chrome-ai-playground/fork"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-card border border-border rounded-lg hover:bg-accent transition-colors"
-                >
-                  <GitFork className="w-4 h-4 text-blue-500" />
-                  <span className="font-medium">{githubStats.forks.toLocaleString()} Forks</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
       </section>
 
       {/* Key Benefits Section */}

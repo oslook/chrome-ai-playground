@@ -4,7 +4,7 @@ import { FileText, Globe2, MessageSquare, Bot, RefreshCw, PenTool, HelpCircle } 
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu';
 import { ModeToggle } from '@/components/mode-toggle';
 import Link from 'next/link';
-import Image from 'next/Image'
+import Image from "next/image";
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 

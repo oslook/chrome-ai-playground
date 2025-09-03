@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/Image';
+import Image from "next/image";
 import { Github, Star, GitFork, Heart, ExternalLink, BookOpen, MessageSquare, Cpu, Globe } from 'lucide-react';
 
 export function Footer() {

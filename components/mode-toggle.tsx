@@ -12,8 +12,8 @@ export function ModeToggle() {
     if (theme === 'light') {
       setTheme('dark');
     } else if (theme === 'dark') {
-      setTheme('system');
-    } else {
+    //   setTheme('system');
+    // } else {
       setTheme('light');
     }
   };
@@ -23,8 +23,8 @@ export function ModeToggle() {
       return <Sun className="h-[1.2rem] w-[1.2rem]" />;
     } else if (theme === 'dark') {
       return <Moon className="h-[1.2rem] w-[1.2rem]" />;
-    } else {
-      return <Monitor className="h-[1.2rem] w-[1.2rem]" />;
+    // } else {
+    //   return <Monitor className="h-[1.2rem] w-[1.2rem]" />;
     }
   };
 
